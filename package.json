@@ -12,7 +12,7 @@
     "url": "https://github.com/senthilprabhut/yslow-nodejs.git"
   },
   "dependencies": {
-    "jsdom": ">=3.1.2",
+    "jsdom": ">=4",
     "commander": ">=2.8.1"
   },
   "engines": {
