@@ -36,8 +36,23 @@ var files, dict,
      */
     objToStr = function (obj) {
         var out = 'invalid output format';
-
-        switch (program.format) {
+        var outputFormat = program.format;
+        var junitThreshold = 85;
+        if(program.format.indexOf('junit')!= -1)
+        {
+            var junitArgs = program.format.split('_');
+            if(junitArgs.length == 2)
+            {
+                var thresholdArg = Number(junitArgs[1]);
+                if(!isNaN(thresholdArg))
+                {
+                    if(thresholdArg>=50 && thresholdArg<=100)
+                    outputFormat = junitArgs[0];
+                    junitThreshold = thresholdArg;
+                }
+            }
+        }
+        switch (outputFormat) {
         case 'json':
             out = JSON.stringify(obj);
             break;
@@ -46,6 +61,9 @@ var files, dict,
             break;
         case 'plain':
             out = util.prettyPrintResults(obj);
+            break;
+        case 'junit':
+            out = util.formatAsJUnit(util.testResults(obj,junitThreshold)).content;
             break;
         }
 

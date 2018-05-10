@@ -21,7 +21,7 @@ Usage: yslow-nodejs [options] [file ...]
     -h, --help               output usage information
     -V, --version            output the version number
     -i, --info <info>        specify the information to display/log (basic|grade|stats|comps|all) [basic]
-    -f, --format <format>    specify the output results format (json|xml|plain) [json]
+    -f, --format <format>    specify the output results format (json|xml|plain|junit_xx) [json], for junit output, the xx indicated the threshold in number between 50-100
     -r, --ruleset <ruleset>  specify the YSlow performance ruleset to be used (ydefault|yslow1|yblog) [ydefault]
     -b, --beacon <url>       specify an URL to log the results
     -d, --dict               include dictionary of results fields
@@ -34,6 +34,7 @@ Usage: yslow-nodejs [options] [file ...]
     yslow-nodejs --info all --format plain /tmp/*.har
     yslow-nodejs -i basic --rulseset yslow1 -d < file.har
     curl example.com/file.har | yslow -i grade -b http://server.com/beacon -v
+    yslow-nodejs -i grade -f junit_75 file.har
 
   More Info:
 
